@@ -1,6 +1,5 @@
-# Retro macOS Portfolio — Next.js + Firebase (100% free tier)
-
-A React (Next.js, static export) rebuild of your Stitch "Platinum" retro-macOS portfolio:
+## a portfolio website
+A React (Next.js, static export)
 Desktop home (with boot chime), Projects, Experience, Skills (tabs + progress bars), an
 interactive Terminal, and a Guestbook / Review Panel — all with working buttons and synthesized
 90s-Mac sound effects.
