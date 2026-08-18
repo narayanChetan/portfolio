@@ -1,0 +1,42 @@
+type Profile @table {
+  fullName: String!
+  tagline: String!
+  bio: String!
+  avatarUrl: String
+  email: String
+  location: String
+}
+
+type Project @table {
+  title: String!
+  description: String!
+  displayOrder: Int!
+  imageUrl: String
+  projectUrl: String
+  repositoryUrl: String
+  isPublished: Boolean
+  profile: Profile!
+}
+
+type Category @table {
+  name: String!
+  colorCode: String
+}
+
+type Skill @table {
+  name: String!
+  proficiencyLevel: String!
+  profile: Profile!
+}
+
+type Link @table {
+  platformName: String!
+  url: String!
+  iconType: String
+  profile: Profile!
+}
+
+type ProjectCategory @table(key: ["project", "category"]) {
+  project: Project!
+  category: Category!
+}

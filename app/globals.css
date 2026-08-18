@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Inter:wght@100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* ---- Platinum (light) theme, from platinum_desktop/DESIGN.md ---- */
+  --p-surface: #f9f9f9;
+  --p-face: #cccccc;
+  --p-face-dark: #bbbbbb;
+  --p-window: #eeeeee;
+  --p-content: #ffffff;
+  --p-highlight: #ffffff;
+  --p-shadow-low: #999999;
+  --p-shadow-high: #666666;
+  --p-border-hard: #000000;
+  --p-primary: #00006c;
+  --p-primary-container: #0000aa;
+  --p-on-surface: #1a1c1c;
+  --p-on-surface-variant: #454554;
+  --p-desktop: #55aaaa;
+  --p-desktop-alt: #4d9999;
+
+  /* ---- Retro Dark theme, from terminal/guestbook mockups ---- */
+  --d-bg: #141313;
+  --d-surface-container: #1c1b1b;
+  --d-surface-high: #2b2a2a;
+  --d-on-surface: #e5e2e1;
+  --d-on-surface-variant: #c4c7c7;
+  --d-outline: #454545;
+  --d-accent-amber: #ffb300;
+  --d-accent-blue: #3d5afe;
+  --d-desktop: #121212;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============ Desktop backgrounds ============ */
+.desktop-bg-platinum {
+  background-color: var(--p-desktop);
+  background-image: linear-gradient(45deg, var(--p-desktop) 25%, var(--p-desktop-alt) 25%, var(--p-desktop-alt) 50%, var(--p-desktop) 50%, var(--p-desktop) 75%, var(--p-desktop-alt) 75%, var(--p-desktop-alt) 100%);
+  background-size: 4px 4px;
+}
+
+.desktop-bg-dark {
+  background-color: var(--d-desktop);
+  background-image: radial-gradient(#232323 1px, transparent 1px);
+  background-size: 4px 4px;
+}
+
+/* ============ Bevels (Platinum) ============ */
+.bevel-out {
+  border-top: 2px solid var(--p-highlight);
+  border-left: 2px solid var(--p-highlight);
+  border-bottom: 2px solid var(--p-border-hard);
+  border-right: 2px solid var(--p-border-hard);
+}
+
+.bevel-in {
+  border-top: 2px solid var(--p-shadow-high);
+  border-left: 2px solid var(--p-shadow-high);
+  border-bottom: 2px solid var(--p-highlight);
+  border-right: 2px solid var(--p-highlight);
+}
+
+.btn-3d {
+  border-top: 1px solid var(--p-highlight);
+  border-left: 1px solid var(--p-highlight);
+  border-bottom: 1px solid var(--p-shadow-high);
+  border-right: 1px solid var(--p-shadow-high);
+  background-color: var(--p-face);
+  cursor: pointer;
+}
+.btn-3d:active {
+  border-top: 1px solid var(--p-shadow-high);
+  border-left: 1px solid var(--p-shadow-high);
+  border-bottom: 1px solid var(--p-highlight);
+  border-right: 1px solid var(--p-highlight);
+  padding-top: 1px;
+  padding-left: 1px;
+}
+
+.title-lines {
+  background-image: repeating-linear-gradient(to bottom, #000 0, #000 1px, transparent 1px, transparent 2px);
+}
+
+/* ============ Bevels (Dark) ============ */
+.bevel-out-dark {
+  border-top: 1px solid var(--d-outline);
+  border-left: 1px solid var(--d-outline);
+  border-bottom: 1px solid #000000;
+  border-right: 1px solid #000000;
+}
+.bevel-in-dark {
+  border-top: 1px solid #000000;
+  border-left: 1px solid #000000;
+  border-bottom: 1px solid var(--d-outline);
+  border-right: 1px solid var(--d-outline);
+}
+.btn-3d-dark {
+  border-top: 1px solid var(--d-outline);
+  border-left: 1px solid var(--d-outline);
+  border-bottom: 1px solid #000000;
+  border-right: 1px solid #000000;
+  background-color: var(--d-surface-high);
+  cursor: pointer;
+}
+.btn-3d-dark:active {
+  border-top: 1px solid #000000;
+  border-left: 1px solid #000000;
+  border-bottom: 1px solid var(--d-outline);
+  border-right: 1px solid var(--d-outline);
+}
+.speed-lines-dark {
+  background-image: repeating-linear-gradient(to bottom, transparent, transparent 1px, #2d2d2d 1px, #2d2d2d 2px);
+}
+
+/* ============ Scrollbars ============ */
+::-webkit-scrollbar {
+  width: 16px;
+  background: var(--p-face);
+  border-left: 1px solid #000;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--p-face);
+  border-top: 1px solid var(--p-highlight);
+  border-left: 1px solid var(--p-highlight);
+  border-bottom: 1px solid var(--p-shadow-high);
+  border-right: 1px solid var(--p-shadow-high);
+}
+::-webkit-scrollbar-button {
+  height: 16px;
+  background-color: var(--p-face);
+  border-top: 1px solid var(--p-highlight);
+  border-left: 1px solid var(--p-highlight);
+  border-bottom: 1px solid var(--p-shadow-high);
+  border-right: 1px solid var(--p-shadow-high);
+}
+
+.blink {
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}

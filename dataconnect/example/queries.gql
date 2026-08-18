@@ -1,0 +1,150 @@
+mutation CreateProfileData($fullName: String!, $tagline: String!, $bio: String!, $avatarUrl: String, $email: String, $location: String) @auth(level: USER) {
+  profile_insert(data: {id_expr: "auth.uid", fullName: $fullName, tagline: $tagline, bio: $bio, avatarUrl: $avatarUrl, email: $email, location: $location})
+}
+
+mutation UpdateMyProfile($fullName: String, $tagline: String, $bio: String, $avatarUrl: String, $email: String, $location: String) @auth(level: USER) {
+  profile_update(key: {id_expr: "auth.uid"}, data: {fullName: $fullName, tagline: $tagline, bio: $bio, avatarUrl: $avatarUrl, email: $email, location: $location})
+}
+
+mutation DeleteMyProfile @auth(level: USER) {
+  profile_delete(key: {id_expr: "auth.uid"})
+}
+
+query GetMyProfile @auth(level: USER) {
+  profile(key: {id_expr: "auth.uid"}) {
+    fullName
+    tagline
+    bio
+    avatarUrl
+    email
+    location
+  }
+}
+
+query ListAllProfiles @auth(level: PUBLIC, insecureReason: "Public profiles are intended for portfolio visibility.") {
+  profiles {
+    fullName
+    tagline
+    avatarUrl
+  }
+}
+
+mutation CreateProject($title: String!, $description: String!, $displayOrder: Int!, $imageUrl: String, $projectUrl: String, $repositoryUrl: String, $isPublished: Boolean) @auth(level: USER) {
+  project_insert(data: {title: $title, description: $description, displayOrder: $displayOrder, imageUrl: $imageUrl, projectUrl: $projectUrl, repositoryUrl: $repositoryUrl, isPublished: $isPublished, profileId_expr: "auth.uid"})
+}
+
+mutation UpdateProject($id: UUID!, $title: String, $description: String, $displayOrder: Int, $imageUrl: String, $projectUrl: String, $repositoryUrl: String, $isPublished: Boolean) @auth(level: USER) {
+  project_update(key: {id: $id}, data: {title: $title, description: $description, displayOrder: $displayOrder, imageUrl: $imageUrl, projectUrl: $projectUrl, repositoryUrl: $repositoryUrl, isPublished: $isPublished})
+}
+
+mutation DeleteProject($id: UUID!) @auth(level: USER) {
+  project_delete(key: {id: $id})
+}
+
+query GetProject($id: UUID!) @auth(level: PUBLIC, insecureReason: "Publicly visible portfolio projects.") {
+  project(id: $id) {
+    title
+    description
+    projectUrl
+  }
+}
+
+query ListMyProjects @auth(level: USER) {
+  projects(where: {profileId: {eq_expr: "auth.uid"}}) {
+    title
+    isPublished
+  }
+}
+
+mutation CreateCategory($name: String!, $colorCode: String) @auth(level: USER) {
+  category_insert(data: {name: $name, colorCode: $colorCode})
+}
+
+mutation UpdateCategory($id: UUID!, $name: String, $colorCode: String) @auth(level: USER) {
+  category_update(key: {id: $id}, data: {name: $name, colorCode: $colorCode})
+}
+
+mutation DeleteCategory($id: UUID!) @auth(level: USER) {
+  category_delete(key: {id: $id})
+}
+
+query GetCategory($id: UUID!) @auth(level: PUBLIC, insecureReason: "Publicly accessible project categories.") {
+  category(id: $id) {
+    name
+    colorCode
+  }
+}
+
+query ListCategories @auth(level: PUBLIC, insecureReason: "Publicly accessible project categories.") {
+  categories {
+    name
+    colorCode
+  }
+}
+
+mutation CreateSkill($name: String!, $proficiencyLevel: String!) @auth(level: USER) {
+  skill_insert(data: {name: $name, proficiencyLevel: $proficiencyLevel, profileId_expr: "auth.uid"})
+}
+
+mutation UpdateSkill($id: UUID!, $name: String, $proficiencyLevel: String) @auth(level: USER) {
+  skill_update(key: {id: $id}, data: {name: $name, proficiencyLevel: $proficiencyLevel})
+}
+
+mutation DeleteSkill($id: UUID!) @auth(level: USER) {
+  skill_delete(key: {id: $id})
+}
+
+query GetSkill($id: UUID!) @auth(level: PUBLIC, insecureReason: "Public display of skills.") {
+  skill(id: $id) {
+    name
+    proficiencyLevel
+  }
+}
+
+query ListMySkills @auth(level: USER) {
+  skills(where: {profileId: {eq_expr: "auth.uid"}}) {
+    name
+    proficiencyLevel
+  }
+}
+
+mutation CreateLink($platformName: String!, $url: String!, $iconType: String) @auth(level: USER) {
+  link_insert(data: {platformName: $platformName, url: $url, iconType: $iconType, profileId_expr: "auth.uid"})
+}
+
+mutation UpdateLink($id: UUID!, $platformName: String, $url: String, $iconType: String) @auth(level: USER) {
+  link_update(key: {id: $id}, data: {platformName: $platformName, url: $url, iconType: $iconType})
+}
+
+mutation DeleteLink($id: UUID!) @auth(level: USER) {
+  link_delete(key: {id: $id})
+}
+
+query GetLink($id: UUID!) @auth(level: PUBLIC, insecureReason: "Public links to social profiles.") {
+  link(id: $id) {
+    platformName
+    url
+  }
+}
+
+query ListMyLinks @auth(level: USER) {
+  links(where: {profileId: {eq_expr: "auth.uid"}}) {
+    platformName
+    url
+  }
+}
+
+mutation AddProjectCategory($projectId: UUID!, $categoryId: UUID!) @auth(level: USER) {
+  projectCategory_insert(data: {projectId: $projectId, categoryId: $categoryId})
+}
+
+mutation RemoveProjectCategory($projectId: UUID!, $categoryId: UUID!) @auth(level: USER) {
+  projectCategory_delete(key: {projectId: $projectId, categoryId: $categoryId})
+}
+
+query ListProjectCategories @auth(level: PUBLIC, insecureReason: "Public mapping of projects to categories.") {
+  projectCategories {
+    projectId
+    categoryId
+  }
+}

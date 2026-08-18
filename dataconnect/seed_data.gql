@@ -1,0 +1,65 @@
+mutation SeedAllData @transaction {
+  profile_insertMany(data: [
+    {
+      id: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+      fullName: "Alice Developer",
+      tagline: "Building the future",
+      bio: "Full stack enthusiast."
+    },
+    {
+      id: "b2d8e4f1-9c3a-4e56-8a7b-9c0d1e2f3a4b",
+      fullName: "Bob Designer",
+      tagline: "Pixel perfectionist",
+      bio: "UI/UX lover."
+    }
+  ])
+  category_insertMany(data: [
+    { id: "e1a2b3c4-d5e6-4f7a-8b9c-0d1e2f3a4b5c", name: "Web Dev" },
+    { id: "f2b3c4d5-e6f7-4a8b-9c0d-1e2f3a4b5c6d", name: "Mobile" },
+    { id: "a3c4d5e6-f7a8-4b9c-0d1e-2f3a4b5c6d7e", name: "Cloud" }
+  ])
+  project_insertMany(data: [
+    {
+      id: "7d8e9f0a-1b2c-3d4e-5f6a-7b8c9d0e1f2a",
+      profileId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+      title: "Portfolio Site",
+      description: "My personal space.",
+      displayOrder: 1
+    },
+    {
+      id: "8e9f0a1b-2c3d-4e5f-6a7b-8c9d0e1f2a3b",
+      profileId: "b2d8e4f1-9c3a-4e56-8a7b-9c0d1e2f3a4b",
+      title: "Design App",
+      description: "A tool for creatives.",
+      displayOrder: 2
+    }
+  ])
+  projectCategory_insertMany(data: [
+    { projectId: "7d8e9f0a-1b2c-3d4e-5f6a-7b8c9d0e1f2a", categoryId: "e1a2b3c4-d5e6-4f7a-8b9c-0d1e2f3a4b5c" },
+    { projectId: "8e9f0a1b-2c3d-4e5f-6a7b-8c9d0e1f2a3b", categoryId: "f2b3c4d5-e6f7-4a8b-9c0d-1e2f3a4b5c6d" }
+  ])
+  skill_insertMany(data: [
+    {
+      profileId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+      name: "React",
+      proficiencyLevel: "Expert"
+    },
+    {
+      profileId: "b2d8e4f1-9c3a-4e56-8a7b-9c0d1e2f3a4b",
+      name: "Figma",
+      proficiencyLevel: "Advanced"
+    }
+  ])
+  link_insertMany(data: [
+    {
+      profileId: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+      platformName: "GitHub",
+      url: "https://github.com/alice"
+    },
+    {
+      profileId: "b2d8e4f1-9c3a-4e56-8a7b-9c0d1e2f3a4b",
+      platformName: "Dribbble",
+      url: "https://dribbble.com/bob"
+    }
+  ])
+}
