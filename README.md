@@ -84,26 +84,3 @@ files, nothing to license or host:
 
 Everything text-based (name, bio, projects, experience, skills, certifications, nav) lives in
 `lib/data.js` — no component code needs to change for normal updates.
-
-## Project structure
-
-```
-app/
-  page.js               Desktop home (boot chime, welcome dialog)
-  projects/page.js       Projects (Finder window)
-  experience/page.js     Experience & Leadership
-  skills/page.js          Skills / Certifications (tabs)
-  terminal/page.js        Interactive terminal
-  guestbook/page.js       Guestbook (reads/writes Firestore directly)
-components/
-  MenuBar.js              Menu bar: dropdowns, About, Shut Down, mute toggle
-  Sidebar.js              Finder-style nav sidebar
-  Window.js               Reusable window chrome
-  SoundProvider.js        Global click-sound + mute context
-lib/
-  data.js                  All portfolio content
-  firebase.js              Firebase client init (no backend server)
-  sound.js                 Synthesized retro sound kit
-firestore.rules             Guestbook security rules (validated, append-only)
-firebase.json / firestore.indexes.json / .firebaserc.example
-```
